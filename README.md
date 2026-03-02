@@ -53,30 +53,30 @@ FEATURES
 
 PROJECT STRUCTURE
 
-controller  -> REST API layer
-service     -> Business logic layer
-repository  -> Database layer
-entity      -> JPA entities
-dto         -> Request/Response models
+controller  -> REST API layer  
+service     -> Business logic layer  
+repository  -> Database layer  
+entity      -> JPA entities  
+dto         -> Request/Response models  
 exception   -> Global exception handling
 
 ------------------------------------------------------------
 
 API ENDPOINTS
 
-1. Search Travel
+1. Search Travel  
    GET /api/search
 
    Required query parameters:
-    - from
-    - to
-    - date (ISO format: YYYY-MM-DD)
-    - type
+   - from
+   - to
+   - date (ISO format: YYYY-MM-DD)
+   - type
 
    Example:
    GET /api/search?from=DELHI&to=MUMBAI&date=2026-03-10&type=FLIGHT
 
-2. Create Booking
+2. Create Booking  
    POST /api/bookings
 
    Sample Request Body:
@@ -87,12 +87,14 @@ API ENDPOINTS
    "travelType": "FLIGHT"
    }
 
-3. Pay for Booking
+3. Pay for Booking  
    POST /api/bookings/{bookingId}/pay
 
    Sample Request Body:
    {
-   "paymentMethod": "UPI"
+   "cardNumber": "1234567891",
+   "expiry": "05/26",
+   "cvv": "123"
    }
 
 ------------------------------------------------------------
@@ -110,7 +112,7 @@ curl -X POST "https://mini-travel-booking.onrender.com/api/bookings" \
 Pay Booking:
 curl -X POST "https://mini-travel-booking.onrender.com/api/bookings/{bookingId}/pay" \
 -H "Content-Type: application/json" \
--d '{"paymentMethod":"UPI"}'
+-d '{"cardNumber":"1234567891","expiry":"05/26","cvv":"123"}'
 
 ------------------------------------------------------------
 
