@@ -8,6 +8,9 @@ import com.utkarsh.mini_travel_booking.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,5 +48,25 @@ public class TravelService {
         booking.setTransactionId(UUID.randomUUID().toString());
 
         return bookingRepository.save(booking);
+    }
+
+    public List<?> search(String from, String to, LocalDate date, String type) {
+
+        if (from.equalsIgnoreCase(to)) {
+            throw new IllegalArgumentException("Source and destination cannot be the same");
+        }
+
+        return List.of(
+                new Object() {
+                    public final String optionId = UUID.randomUUID().toString();
+                    public final String travelType = type;
+                    public final String fromLocation = from;
+                    public final String toLocation = to;
+                    public final LocalDate travelDate = date;
+                    public final LocalTime departureTime = LocalTime.of(10, 30);
+                    public final LocalTime arrivalTime = LocalTime.of(12, 30);
+                    public final double price = 4500.0;
+                }
+        );
     }
 }

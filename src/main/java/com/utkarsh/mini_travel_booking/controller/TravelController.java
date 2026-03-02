@@ -29,18 +29,7 @@ public class TravelController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             @RequestParam String type) {
 
-        return List.of(
-                new Object() {
-                    public final String optionId = UUID.randomUUID().toString();
-                    public final String travelType = type;
-                    public final String fromLocation = from;
-                    public final String toLocation = to;
-                    public final LocalDate travelDate = date;
-                    public final LocalTime departureTime = LocalTime.of(10, 30);
-                    public final LocalTime arrivalTime = LocalTime.of(12, 30);
-                    public final double price = 4500.0;
-                }
-        );
+        return travelService.search(from, to, date, type);
     }
 
     //  CREATE BOOKING
